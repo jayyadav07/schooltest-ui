@@ -1,0 +1,22 @@
+:host {
+    display: block;
+    width: 250px;
+  }
+  mat-nav-list {
+    padding: 0;
+  }
+  .mat-expansion-panel {
+    box-shadow: none;
+    background: transparent;
+  }
+  .mat-expansion-panel-header {
+    padding: 0 16px;
+  }
+  mat-panel-title {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+  }
+  a[mat-list-item] {
+    padding-left: 16px;
+  }

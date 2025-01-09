@@ -1,1 +1,24 @@
-<p>sidebar-menu works!</p>
+<mat-nav-list>
+    @for (item of menuItems; track item.label) {
+      @if (item.children) {
+        <mat-expansion-panel class="mat-elevation-z0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>{{item.icon}}</mat-icon>
+              {{item.label}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          @for (child of item.children; track child.label) {
+            <a mat-list-item [routerLink]="child.route">
+              {{child.label}}
+            </a>
+          }
+        </mat-expansion-panel>
+      } @else {
+        <a mat-list-item [routerLink]="item.route">
+          <mat-icon>{{item.icon}}</mat-icon>
+          {{item.label}}
+        </a>
+      }
+    }
+  </mat-nav-list>
