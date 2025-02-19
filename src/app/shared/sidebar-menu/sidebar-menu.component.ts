@@ -6,8 +6,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MenuItem } from '../../../core/models/menu-item.model';
-import { MenuService } from '../../../core/services/menu.service';
+import { MenuItem } from '../../core/models/menu-item.model';
+import { MenuService } from '../../core/services/menu.service';
 
 
 @Component({
@@ -39,6 +39,6 @@ export class SidebarMenuComponent {
   menuItems: MenuItem[];
 
   constructor(menuService: MenuService) {
-    this.menuItems = menuService.getMenuItems();
+    this.menuItems = menuService.getAdminMenuItems();
   }
 }

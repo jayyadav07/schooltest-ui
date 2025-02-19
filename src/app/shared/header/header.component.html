@@ -1,0 +1,66 @@
+<!---
+<mat-toolbar color="primary">
+   
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+   
+    <span class="toolbar-title">School Management System</span>
+  
+    
+    <span class="spacer"></span>
+    <button mat-button  (click)="login()">
+      <mat-icon>login</mat-icon> Login
+    </button>
+    <button mat-button  (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </mat-toolbar> -->
+
+  <mat-toolbar color="primary" class="header">
+    <button mat-icon-button class="menu-button" [@rotateIcon]="menuState" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+    <span class="logo" [@fadeInOut]>School Management System</span>
+    
+    <div class="spacer"></div>
+    
+    <div class="profile-section">
+      <button mat-button class="login-btn" *ngIf="!isLoggedIn" (click)="login()" [@fadeSlide]>
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
+
+      <ng-container *ngIf="isLoggedIn">
+        <button mat-button [matMenuTriggerFor]="profileMenu" class="profile-btn" [@fadeSlide]>
+          <img 
+            src="https://i.pravatar.cc/32" 
+            alt="Profile" 
+            class="avatar"
+            [@pulse]="pulseState"
+            (@pulse.done)="onPulseComplete()"
+          >
+          <span class="username">John Doe</span>
+          <mat-icon [@rotateIcon]="dropdownState">arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #profileMenu="matMenu" class="profile-menu">
+          <button mat-menu-item (click)="viewProfile()">
+            <mat-icon>person</mat-icon>
+            <span>My Profile</span>
+          </button>
+          <button mat-menu-item (click)="viewSettings()">
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()" class="logout-btn">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+    </div>
+  </mat-toolbar>

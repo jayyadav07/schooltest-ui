@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    height: 100vh;
+    background-color: #87CEEB;
+  }
+  .sidenav-container {
+    height: 100%;
+  }
+  .sidenav {
+    width: 270px;
+    background-color: #87CEEB;
+  }
+  .content {
+    padding: 20px;
+  }
+  mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #87CEEB;
+  }
+
+  mat-toolbar button {
+  margin-left: 10px;
+}
+
+mat-toolbar mat-icon {
+  margin-right: 8px;
+}
+  

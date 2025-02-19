@@ -5,7 +5,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SidebarMenuComponent } from './shared/components/sidebar-menu/sidebar-menu.component';
+import { SidebarMenuComponent } from './shared/sidebar-menu/sidebar-menu.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,8 @@ import { SidebarMenuComponent } from './shared/components/sidebar-menu/sidebar-m
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    SidebarMenuComponent
-
+    SidebarMenuComponent,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

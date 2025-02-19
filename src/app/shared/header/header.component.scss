@@ -1,0 +1,114 @@
+.toolbar-title {
+    flex-grow: 1; /* Center the title */
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .spacer {
+    flex-grow: 1; /* Push the login/logout buttons to the right */
+  }
+  
+  mat-toolbar button {
+    margin-left: 10px;
+  }
+  
+  mat-toolbar mat-icon {
+    margin-right: 8px;
+  }
+  
+  mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #87CEEB;
+  }
+
+  .header {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .profile-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .login-btn {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 0 16px;
+    height: 36px;
+    
+    mat-icon {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+  }
+
+  .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    height: 40px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.8);
+  }
+
+  .username {
+    font-weight: 500;
+  }
+
+  .profile-menu {
+    margin-top: 8px;
+  }
+
+  .logout-btn {
+    color: #f44336;
+  }
+
+  ::ng-deep .mat-menu-panel {
+    border-radius: 12px !important;
+    overflow: hidden;
+  }
+
+  ::ng-deep .mat-menu-item {
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba(0,0,0,0.04);
+    }
+  }

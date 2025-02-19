@@ -1,0 +1,98 @@
+:host {
+    display: block;
+    width: 250px;
+  }
+  mat-nav-list {
+    padding: 0;
+  }
+  .mat-expansion-panel {
+    box-shadow: none;
+    background: transparent;
+  }
+  .mat-expansion-panel-header {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+  }
+  mat-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adjust the space between icon and label if needed */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* In case the title text is long */
+    text-overflow: ellipsis; /* Show ellipsis if the text overflows */
+  }
+  a[mat-list-item] {
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+  }
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 10vh;
+  }
+  
+  .brand {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 70px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .logo {
+    background: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-letter {
+    color: #dc4c3f;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .brand h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: white;
+  }
+  
+  .user-profile {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+  }
+  
+  .username {
+    flex: 1;
+    font-size: 0.9rem;
+  }
+  
+  .dropdown-icon {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+  .mat-icon {
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px; 
+}
+  
