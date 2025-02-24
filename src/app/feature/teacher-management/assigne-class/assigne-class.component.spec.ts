@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AttendanceComponent } from './attendance.component';
+import { AssigneClassComponent } from './assigne-class.component';
 
-describe('AttendanceComponent', () => {
-  let component: AttendanceComponent;
-  let fixture: ComponentFixture<AttendanceComponent>;
+describe('AssigneClassComponent', () => {
+  let component: AssigneClassComponent;
+  let fixture: ComponentFixture<AssigneClassComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AttendanceComponent]
+      imports: [AssigneClassComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AttendanceComponent);
+    fixture = TestBed.createComponent(AssigneClassComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

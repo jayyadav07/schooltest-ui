@@ -4,13 +4,13 @@
       <div class="logo">
         <span class="logo-letter">A</span>
       </div>
-      <h1>CREATIVE TIM</h1>
+      <h1>Jeevan Jyoti</h1>
     </div>
   <mat-expansion-panel class="mat-elevation-z0">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <mat-icon>home</mat-icon>
-        Creative Tim
+        Jeevan Jyoti
       </mat-panel-title>
     </mat-expansion-panel-header>
     <a mat-list-item routerLink="/" routerLinkActive="active">
@@ -19,23 +19,9 @@
     </a>
   </mat-expansion-panel>
   </div>
-  <mat-nav-list>
-    <!-- Creative Tim Section -->
-    <mat-expansion-panel class="mat-elevation-z0">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>home</mat-icon>
-          Creative Tim
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon>home</mat-icon>
-        Dashboard
-      </a>
-    </mat-expansion-panel>
-  
+  <mat-nav-list> 
     <!-- User Profile Section -->
-    <mat-expansion-panel class="mat-elevation-z0">
+    <!-- <mat-expansion-panel class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon>account_circle</mat-icon>
@@ -50,7 +36,7 @@
         <mat-icon>settings</mat-icon>
         Settings
       </a>
-    </mat-expansion-panel>
+    </mat-expansion-panel> -->
   
     @for (item of menuItems; track item.label) {
       @if (item.children) {

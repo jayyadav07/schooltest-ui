@@ -112,3 +112,25 @@
       background: rgba(0,0,0,0.04);
     }
   }
+
+  .navbar .dropdown .dropdown-menu, .navbar .dropdown.show .dropdown-menu {
+    background-color: transparent;
+    border: 0;
+    transition: none;
+    box-shadow: none;
+    width: auto;
+    margin: 0 1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .navbar .dropdown.show .dropdown-menu {
+      display: block;
+  }
+}
+.dropdown-menu {
+  opacity: 1;
+  filter: alpha(opacity = 100);
+  visibility: visible;
+  -webkit-transform: translate3d(0, 1px, 0) !important;
+  transform: translate3d(0, 1px, 0) !important;
+}

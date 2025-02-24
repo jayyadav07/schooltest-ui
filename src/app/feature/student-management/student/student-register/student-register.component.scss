@@ -1,0 +1,197 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f8f9fe;
+}
+
+/* Profile/Register Page Styles */
+.profile-container {
+  background: #f8f9fe;
+  min-height: 100vh;
+  padding-bottom: 3rem;
+}
+
+.profile-header {
+  position: relative;
+  height: 300px;
+  margin-bottom: 2rem;
+}
+
+.cover-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.profile-content {
+  padding: 0 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.edit-profile {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 1px 20px 0px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.edit-profile h2 {
+  color: #3C4858;
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  font-weight: 400;
+  text-align: center;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 0.875rem;
+  transition: all 0.2s ease-out;
+  background: white;
+  padding: 0 5px;
+  pointer-events: none;
+}
+
+.form-group .form-control:focus + label,
+.form-group .form-control:not(:placeholder-shown) + label {
+  top: 0;
+  transform: translateY(-50%) scale(0.9);
+  color: #ff5733;
+}
+
+.form-control {
+  padding: 16px;
+  border: 2px solid #E3E3E3;
+  border-radius: 30px;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  background-color: #fff;
+  color: #495057;
+  height: 50px;
+  width: 100%;
+}
+
+.form-control:disabled {
+  background: #F5F5F5;
+  cursor: not-allowed;
+  color: #777;
+}
+
+.form-control:focus {
+  border-color: #ff5733;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 87, 51, 0.1);
+}
+
+.form-control::placeholder {
+  color: transparent;
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 100px;
+  resize: vertical;
+  border-radius: 20px;
+}
+
+.form-group textarea + label {
+  top: 25px;
+}
+
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn-update {
+  background: #ff5733;
+  color: white;
+  border: none;
+  padding: 12px 50px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  line-height: 1.5;
+  box-shadow: 0 2px 2px 0 rgba(255, 87, 51, 0.14), 
+              0 3px 1px -2px rgba(255, 87, 51, 0.2), 
+              0 1px 5px 0 rgba(255, 87, 51, 0.12);
+  min-width: 200px;
+}
+
+.btn-update:hover {
+  background: #e64a2e;
+  box-shadow: 0 14px 26px -12px rgba(255, 87, 51, 0.42), 
+              0 4px 23px 0px rgba(0, 0, 0, 0.12), 
+              0 8px 10px -5px rgba(255, 87, 51, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-content {
+    padding: 0 15px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-header {
+    height: 200px;
+    margin-bottom: 2rem;
+  }
+  
+  .cover-image {
+    height: 200px;
+  }
+  
+  .edit-profile {
+    padding: 20px;
+  }
+}
