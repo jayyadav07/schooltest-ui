@@ -19,7 +19,7 @@
     align-items: center;
     gap: 8px; /* Adjust the space between icon and label if needed */
     white-space: nowrap; /* Prevent wrapping */
-    overflow: hidden; /* In case the title text is long */
+   // overflow: hidden; /* In case the title text is long */
     text-overflow: ellipsis; /* Show ellipsis if the text overflows */
   }
   a[mat-list-item] {

@@ -7,6 +7,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SidebarMenuComponent } from './shared/sidebar-menu/sidebar-menu.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; // Required for datepicker
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +28,18 @@ import { HeaderComponent } from './shared/header/header.component';
     MatIconModule,
     MatButtonModule,
     SidebarMenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatCheckboxModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

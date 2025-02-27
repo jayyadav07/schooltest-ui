@@ -5,7 +5,7 @@ import { MenuItem } from '../models/menu-item.model';
   providedIn: 'root'
 })
 export class MenuService {
-  
+
   // Admin Menu Items
   getAdminMenuItems(): MenuItem[] {
     return [
@@ -18,67 +18,77 @@ export class MenuService {
         label: 'Student Management',
         icon: 'school',
         children: [
-          { label: 'Add Student', route: '/students/add' },
-          { label: 'View Students', route: '/students/view' },
-          { label: 'Attendance', route: '/students/attendance' }
+          { label: 'Add Student', route: '/student/register' },
+          { label: 'View Students', route: '/student/list' },
+          { label: 'Attendance', route: '/attendance/student' }
         ]
       },
       {
         label: 'Teacher Management',
         icon: 'school',
         children: [
-          { label: 'Add Teacher', route: '/teachers/add' },
-          { label: 'View Teachers', route: '/teachers/view' },
-          { label: 'Assign Classes', route: '/teachers/assign' }
+          { label: 'Add Teacher', route: '/teacher/register' },
+          { label: 'View Teachers', route: '/teacher/list' },
+          { label: 'Assign Classes', route: '/teacher/assign-class' }
         ]
       },
       {
         label: 'Timetable Management',
         icon: 'schedule',
         children: [
-          { label: 'Add Timetable', route: '/timetable/add' },
-          { label: 'View Timetable', route: '/timetable/view' }
+          { label: 'Add Timetable', route: '/timetable/register' },
+          { label: 'View Timetable', route: '/timetable/list' },
+          { label: 'Update Timetable', route: '/timetable/detail/:id' }
         ]
       },
       {
         label: 'Financial Management',
         icon: 'account_balance',
         children: [
-          { label: 'View Financials', route: '/finance/view' },
-          { label: 'Manage Expenses', route: '/finance/expenses' }
+          { label: 'View Financials', route: '/financial/view' },
+          { label: 'Manage Expenses', route: '/financial/add' },
+          { label: 'Salary Table', route: '/financial/salary-table' },
+          { label: 'Update Salary Structure', route: '/financial/update-salary-structure' },
+          { label: 'View Salary', route: '/financial/salary' },
+          { label: 'View Salary Structure', route: '/financial/view-salary-structure' }
         ]
       },
       {
         label: 'Visitors & Vehicles',
         icon: 'directions_car',
         children: [
-          { label: 'View Logs', route: '/visitors/logs' },
-          { label: 'Add Visitor', route: '/visitors/add' }
+          { label: 'View Logs', route: '/vehicle/list' },
+          { label: 'Add Vehicle', route: '/vehicle/register' },
+          { label: 'Update Vehicle', route: '/vehicle/detail/:id' },
+          { label: 'Add Visitor', route: '/visitor/register' },
+          { label: 'View Visitors', route: '/visitor/list' }
         ]
       },
       {
         label: 'Result Management',
         icon: 'assessment',
         children: [
-          { label: 'View Results', route: '/results/view' },
-          { label: 'Generate Results', route: '/results/generate' }
+          { label: 'View Results', route: '/result/list' },
+          { label: 'Update Results', route: '/result/update' },
+          { label: 'Result Details', route: '/result/details' }
         ]
       },
       {
         label: 'Reports',
         icon: 'assessment',
         children: [
-          { label: 'Attendance Report', route: '/reports/attendance' },
-          { label: 'Financial Report', route: '/reports/financial' },
-          { label: 'Student Performance Report', route: '/reports/performance' }
+          { label: 'Attendance Report', route: '/report/attendance' },
+          { label: 'Financial Report', route: '/report/financial' },
+          { label: 'Student Performance Report', route: '/report/student-performance' }
         ]
       },
       {
         label: 'Settings',
         icon: 'settings',
         children: [
-          { label: 'School Information', route: '/settings/school' },
-          { label: 'User Roles and Permissions', route: '/settings/roles' }
+          { label: 'School Information', route: '/setting/school-info' },
+          { label: 'School Info List', route: '/setting/school-info/list' },
+          { label: 'User Roles and Permissions', route: '/setting/userrole' }
         ]
       }
     ];
@@ -96,26 +106,31 @@ export class MenuService {
         label: 'Student Management',
         icon: 'school',
         children: [
-          { label: 'View Students', route: '/students/view' },
-          { label: 'Attendance', route: '/students/attendance' }
+          { label: 'View Students', route: '/student/list' },
+          { label: 'Attendance', route: '/attendance/student' }
         ]
       },
       {
         label: 'Timetable',
         icon: 'schedule',
-        route: '/timetable'
+        children: [
+          { label: 'View Timetable', route: '/timetable/list' }
+        ]
       },
       {
         label: 'Result Management',
         icon: 'assessment',
         children: [
-          { label: 'View Results', route: '/results/view' }
+          { label: 'View Results', route: '/result/list' }
         ]
       },
       {
-        label: 'Track Visitors & Vehicles',
+        label: 'Visitors & Vehicles',
         icon: 'directions_car',
-        route: '/visitors'
+        children: [
+          { label: 'View Logs', route: '/vehicle/list' },
+          { label: 'Add Visitor', route: '/visitor/register' }
+        ]
       }
     ];
   }
@@ -131,17 +146,17 @@ export class MenuService {
       {
         label: 'Timetable',
         icon: 'schedule',
-        route: '/timetable'
+        route: '/timetable/list'
       },
       {
         label: 'View Results',
         icon: 'assessment',
-        route: '/results/view'
+        route: '/result/list'
       },
       {
         label: 'Track Visitors & Vehicles',
         icon: 'directions_car',
-        route: '/visitors'
+        route: '/vehicle/list'
       }
     ];
   }

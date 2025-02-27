@@ -1,23 +1,23 @@
 :host {
     display: block;
     height: 100vh;
-    background-color: #87CEEB;
+    background-color: #e64a2e;
   }
   .sidenav-container {
     height: 100%;
   }
   .sidenav {
     width: 270px;
-    background-color: #87CEEB;
+    background-color: #e64a2e;
   }
   .content {
-    padding: 20px;
+    padding: 5px;
   }
   mat-toolbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #87CEEB;
+    background-color: #e64a2e;
   }
 
   mat-toolbar button {

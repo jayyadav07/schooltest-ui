@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Student, Result } from '../models/student.model';
+import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +80,14 @@ export class MockDataService {
 
   getResultsByStudentId(studentId: number) {
     return this.results.filter(result => result.studentId === studentId);
+  }
+
+   // Simulate submitting the student data
+   submitStudentData(studentData: any): Observable<any> {
+    console.log('Student data submitted:', studentData);
+    // Simulate a delay of 2 seconds
+    return of({ message: 'Success' }).pipe(
+      delay(2000) // Simulated delay
+    );
   }
 }

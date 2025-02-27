@@ -6,7 +6,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 @Component({
   selector: 'app-student-register',
   standalone: true,
-  imports: [CommonModule, FormsModule,MatFormField,MatLabel],
+  imports: [CommonModule, FormsModule],
   templateUrl: './student-register.component.html',
   styleUrl: './student-register.component.scss'
 })
