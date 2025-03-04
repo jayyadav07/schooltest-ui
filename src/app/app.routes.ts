@@ -34,9 +34,14 @@ import { StudentPerformanceComponent } from './feature/reports/student-performan
 import { ResultListComponent } from './feature/result-management/result-list/result-list.component';
 import { UpdateResultComponent } from './feature/result-management/update-result/update-result.component';
 import { ViewResultComponent } from './feature/result-management/view-result/view-result.component';
-import { StudentRegisterComponent } from './feature/student-management/student/student-register/student-register.component';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AddClassComponent } from './feature/class-management/add-class/add-class.component';
+import { ViewClassListComponent } from './feature/class-management/view-class-list/view-class-list.component';
+import { ViewSubjectListComponent } from './feature/subject-management/view-subject-list/view-subject-list.component';
+import { AddSubjectComponent } from './feature/subject-management/add-subject/add-subject.component';
+import { StudentRegisterComponent } from './feature/student-management/student-register/student-register.component';
+import { ExamTimetableComponent } from './feature/timetable-management/exam-timetable/exam-timetable.component';
 
 
 export const routes: Routes = [
@@ -52,14 +57,24 @@ export const routes: Routes = [
   { path: 'student/detail/:id', component: StudentRegisterComponent },
 
   //teacher
-  { path: 'teacher/list', component: ViewTeacherComponent },
+  { path: 'teacher/list', component: StudentListComponent },
   { path: 'teacher/register', component: AddTeacherEditComponent },
   { path: 'teacher/detail/:id', component: AddTeacherEditComponent },
   { path: 'teacher/assign-class', component: AssigneClassComponent },
 
+  //class
+  { path: 'class/list', component: ViewClassListComponent  },
+  { path: 'class/register', component:  AddClassComponent},
+
+  //subject
+  { path: 'subject/list', component: ViewSubjectListComponent },
+  { path: 'subject/register', component: AddSubjectComponent },
+  { path: 'subject/assign-class', component: AssigneClassComponent },
+
    //timetable
    { path: 'timetable/list', component: TimetableComponent },
    { path: 'timetable/register', component: AddTimetableComponent },
+   { path: 'timetable/examtimetable', component: ExamTimetableComponent },
    { path: 'timetable/detail/:id', component: UpdateTimetableComponent },
 
     //visitor-vehicle
@@ -104,7 +119,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRouting { }

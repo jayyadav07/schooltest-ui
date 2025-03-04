@@ -1,1 +1,287 @@
-<p>update-result works!</p>
+<div class="results-container">
+    <div class="page-header">
+      <div class="header-content">
+        <h1>Results Management</h1>
+        <p>Generate and manage student results for different examination periods</p>
+      </div>
+      <div class="header-actions">
+        <button mat-raised-button color="primary" class="generate-button">
+          <mat-icon>add</mat-icon> Generate New Results
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon primary">
+            <mat-icon>assessment</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">3</span>
+            <span class="stat-label">Exam Periods</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon success">
+            <mat-icon>school</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">1,234</span>
+            <span class="stat-label">Students Assessed</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon warning">
+            <mat-icon>trending_up</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">78%</span>
+            <span class="stat-label">Pass Rate</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon info">
+            <mat-icon>emoji_events</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">156</span>
+            <span class="stat-label">Top Performers</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Filters and Search -->
+    <mat-card class="filter-card">
+      <mat-card-content>
+        <div class="filters-container">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search Students</mat-label>
+            <input matInput placeholder="Type to search...">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+
+          <div class="filter-actions">
+            <mat-form-field appearance="outline">
+              <mat-label>Exam Period</mat-label>
+              <mat-select [(value)]="selectedExamPeriod">
+                <mat-option value="monthly">Monthly Tests</mat-option>
+                <mat-option value="midterm">Mid-Term Exams</mat-option>
+                <mat-option value="final">Final Exams</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Class</mat-label>
+              <mat-select>
+                <mat-option value="all">All Classes</mat-option>
+                <mat-option value="6a">Class 6-A</mat-option>
+                <mat-option value="7a">Class 7-A</mat-option>
+                <mat-option value="8a">Class 8-A</mat-option>
+                <mat-option value="9a">Class 9-A</mat-option>
+                <mat-option value="10a">Class 10-A</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Academic Year</mat-label>
+              <mat-select>
+                <mat-option value="2025-2026">2025-2026</mat-option>
+                <mat-option value="2024-2025">2024-2025</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary">
+              <mat-icon>filter_list</mat-icon> Apply Filters
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Results Content -->
+    <mat-card class="content-card">
+      <mat-card-content>
+        <mat-tab-group animationDuration="200ms">
+          <mat-tab label="Results Overview">
+            <div class="tab-content">
+              <div class="results-header">
+                <h2>{{getExamPeriodTitle()}} Results - Academic Year 2024-2025</h2>
+                <div class="results-actions">
+                  <button mat-stroked-button color="primary">
+                    <mat-icon>print</mat-icon> Print Results
+                  </button>
+                  <button mat-stroked-button color="primary">
+                    <mat-icon>file_download</mat-icon> Export to Excel
+                  </button>
+                  <button mat-stroked-button color="primary">
+                    <mat-icon>email</mat-icon> Email to Parents
+                  </button>
+                </div>
+              </div>
+
+             
+            
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="Class Performance">
+            <div class="tab-content">
+              <div class="performance-grid">
+                <mat-card class="performance-card">
+                  <mat-card-header>
+                    <mat-card-title>Class-wise Performance</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div class="class-performance">
+                      <div *ngFor="let classPerf of classPerformance" class="class-perf-item">
+                        <div class="class-info">
+                          <span class="class-name">{{classPerf.name}}</span>
+                          <span class="class-avg">{{classPerf.averagePercentage}}%</span>
+                        </div>
+                        <mat-progress-bar 
+                          mode="determinate" 
+                          [value]="classPerf.averagePercentage"
+                          [ngClass]="getPerformanceClass(classPerf.averagePercentage, 100)">
+                        </mat-progress-bar>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+
+                <mat-card class="performance-card">
+                  <mat-card-header>
+                    <mat-card-title>Subject-wise Performance</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div class="subject-performance">
+                      <div *ngFor="let subjectPerf of subjectPerformance" class="subject-perf-item">
+                        <div class="subject-info">
+                          <span class="subject-name">{{subjectPerf.name}}</span>
+                          <span class="subject-avg">{{subjectPerf.averagePercentage}}%</span>
+                        </div>
+                        <mat-progress-bar 
+                          mode="determinate" 
+                          [value]="subjectPerf.averagePercentage"
+                          [ngClass]="getPerformanceClass(subjectPerf.averagePercentage, 100)">
+                        </mat-progress-bar>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+
+              <mat-card class="grade-distribution-card">
+                <mat-card-header>
+                  <mat-card-title>Grade Distribution</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="grade-distribution">
+                    <div *ngFor="let grade of gradeDistribution" class="grade-item">
+                      <div class="grade-badge large" [ngClass]="getGradeClass(grade.grade)">{{grade.grade}}</div>
+                      <div class="grade-bar-container">
+                        <div class="grade-bar" 
+                             [style.width.%]="grade.percentage"
+                             [ngClass]="getGradeClass(grade.grade)">
+                        </div>
+                        <span class="grade-count">{{grade.count}} students ({{grade.percentage}}%)</span>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+
+              <div class="top-performers-section">
+                <h3>Top Performers</h3>
+                <div class="top-performers">
+                  <mat-card *ngFor="let student of topPerformers" class="top-performer-card">
+                    <div class="performer-rank" [ngClass]="{'rank-1': student.rank === 1, 'rank-2': student.rank === 2, 'rank-3': student.rank === 3}">
+                      {{student.rank}}
+                    </div>
+                    <div class="performer-avatar">
+                      <img [src]="student.avatar" alt="Student Avatar">
+                    </div>
+                    <div class="performer-info">
+                      <h4>{{student.name}}</h4>
+                      <p>{{student.class}}</p>
+                      <div class="performer-score">
+                        <span class="percentage">{{(student.totalMarks / student.maxMarks * 100).toFixed(2)}}%</span>
+                        <span class="grade-badge" [ngClass]="getGradeClass(student.grade)">{{student.grade}}</span>
+                      </div>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="Generate Reports">
+            <div class="tab-content">
+              <div class="report-generation">
+                <h3>Generate Result Reports</h3>
+                <p>Select options to generate and download various result reports</p>
+                
+                <div class="report-options">
+                  <mat-card class="report-option-card">
+                    <mat-card-content>
+                      <div class="report-icon">
+                        <mat-icon>description</mat-icon>
+                      </div>
+                      <h4>Individual Report Cards</h4>
+                      <p>Generate individual student report cards with detailed performance analysis</p>
+                      <button mat-raised-button color="primary">Generate</button>
+                    </mat-card-content>
+                  </mat-card>
+                  
+                  <mat-card class="report-option-card">
+                    <mat-card-content>
+                      <div class="report-icon">
+                        <mat-icon>groups</mat-icon>
+                      </div>
+                      <h4>Class-wise Reports</h4>
+                      <p>Generate consolidated reports for each class with performance metrics</p>
+                      <button mat-raised-button color="primary">Generate</button>
+                    </mat-card-content>
+                  </mat-card>
+                  
+                  <mat-card class="report-option-card">
+                    <mat-card-content>
+                      <div class="report-icon">
+                        <mat-icon>menu_book</mat-icon>
+                      </div>
+                      <h4>Subject-wise Analysis</h4>
+                      <p>Generate detailed analysis reports for each subject across classes</p>
+                      <button mat-raised-button color="primary">Generate</button>
+                    </mat-card-content>
+                  </mat-card>
+                  
+                  <mat-card class="report-option-card">
+                    <mat-card-content>
+                      <div class="report-icon">
+                        <mat-icon>trending_up</mat-icon>
+                      </div>
+                      <h4>Progress Reports</h4>
+                      <p>Generate progress reports comparing current results with previous exams</p>
+                      <button mat-raised-button color="primary">Generate</button>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>

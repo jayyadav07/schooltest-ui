@@ -1,1 +1,167 @@
-<p>timetable works!</p>
+<div class="timetable-container">
+    <div class="page-header">
+      <div class="header-content">
+        <h1>Timetable Management</h1>
+        <p>View and manage class schedules and timetables</p>
+      </div>
+      <div class="header-actions">
+        <button mat-raised-button color="primary" class="add-button">
+          <mat-icon>add</mat-icon> Create New Timetable
+        </button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <mat-card class="filter-card">
+      <mat-card-content>
+        <div class="filters-container">
+          <mat-form-field appearance="outline">
+            <mat-label>Class</mat-label>
+            <mat-select [(value)]="selectedClass">
+              <mat-option value="6a">Class 6-A</mat-option>
+              <mat-option value="7a">Class 7-A</mat-option>
+              <mat-option value="8a">Class 8-A</mat-option>
+              <mat-option value="9a">Class 9-A</mat-option>
+              <mat-option value="10a">Class 10-A</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Academic Year</mat-label>
+            <mat-select [(value)]="selectedYear">
+              <mat-option value="2025-2026">2025-2026</mat-option>
+              <mat-option value="2024-2025">2024-2025</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-stroked-button color="primary">
+            <mat-icon>filter_list</mat-icon> Apply Filters
+          </button>
+
+          <button mat-stroked-button color="accent">
+            <mat-icon>print</mat-icon> Print Timetable
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Timetable Content -->
+    <mat-card class="content-card">
+      <mat-card-content>
+        <div class="timetable-header">
+          <h2>Class {{getClassName()}} Timetable - Academic Year {{selectedYear}}</h2>
+        </div>
+
+        <div class="timetable-wrapper">
+          <table class="timetable">
+            <thead>
+              <tr>
+                <th class="time-header">Time</th>
+                <th *ngFor="let day of weekDays">{{day}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let period of periods">
+                <td class="time-slot">
+                  <div class="period-time">{{period.time}}</div>
+                  <div class="period-name">{{period.name}}</div>
+                </td>
+                <td *ngFor="let day of weekDays; let i = index" 
+                    [ngClass]="{'break-cell': period.isBreak, 'empty-cell': !getTimetableCell(period.id, i)}"
+                    [matTooltip]="getCellTooltip(period.id, i)"
+                    matTooltipPosition="above">
+                  <ng-container *ngIf="!period.isBreak && getTimetableCell(period.id, i)">
+                    <div class="subject-name">{{getTimetableCell(period.id, i)?.subject}}</div>
+                    <div class="teacher-name">{{getTimetableCell(period.id, i)?.teacher}}</div>
+                    <div class="room-info">Room: {{getTimetableCell(period.id, i)?.room}}</div>
+                  </ng-container>
+                  <ng-container *ngIf="period.isBreak">
+                    <div class="break-info">{{period.name}}</div>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="timetable-legend">
+          <div class="legend-item">
+            <div class="legend-color science"></div>
+            <span>Science</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color mathematics"></div>
+            <span>Mathematics</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color languages"></div>
+            <span>Languages</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color social"></div>
+            <span>Social Studies</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color arts"></div>
+            <span>Arts</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color physical"></div>
+            <span>Physical Education</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Teacher Timetable -->
+    <mat-card class="content-card teacher-timetable">
+      <mat-card-header>
+        <mat-card-title>Teacher Schedules</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="outline" class="teacher-select">
+          <mat-label>Select Teacher</mat-label>
+          <mat-select [(value)]="selectedTeacher">
+            <mat-option value="john-smith">John Smith</mat-option>
+            <mat-option value="emily-johnson">Emily Johnson</mat-option>
+            <mat-option value="michael-brown">Michael Brown</mat-option>
+            <mat-option value="sarah-williams">Sarah Williams</mat-option>
+            <mat-option value="robert-davis">Robert Davis</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="teacher-schedule-wrapper" *ngIf="selectedTeacher">
+          <h3>Schedule for {{getTeacherName()}}</h3>
+          <table class="teacher-schedule">
+            <thead>
+              <tr>
+                <th class="time-header">Time</th>
+                <th *ngFor="let day of weekDays">{{day}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let period of periods">
+                <td class="time-slot">
+                  <div class="period-time">{{period.time}}</div>
+                  <div class="period-name">{{period.name}}</div>
+                </td>
+                <td *ngFor="let day of weekDays; let i = index" 
+                    [ngClass]="{'break-cell': period.isBreak, 'empty-cell': !getTeacherScheduleCell(period.id, i)}"
+                    [matTooltip]="getTeacherCellTooltip(period.id, i)"
+                    matTooltipPosition="above">
+                  <ng-container *ngIf="!period.isBreak && getTeacherScheduleCell(period.id, i)">
+                    <div class="class-name">{{getTeacherScheduleCell(period.id, i)?.class}}</div>
+                    <div class="subject-name">{{getTeacherScheduleCell(period.id, i)?.subject}}</div>
+                    <div class="room-info">Room: {{getTeacherScheduleCell(period.id, i)?.room}}</div>
+                  </ng-container>
+                  <ng-container *ngIf="period.isBreak">
+                    <div class="break-info">{{period.name}}</div>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

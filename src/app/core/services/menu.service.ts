@@ -16,7 +16,7 @@ export class MenuService {
       },
       {
         label: 'Student Management',
-        icon: 'school',
+        icon: 'person',
         children: [
           { label: 'Add Student', route: '/student/register' },
           { label: 'View Students', route: '/student/list' },
@@ -25,11 +25,27 @@ export class MenuService {
       },
       {
         label: 'Teacher Management',
-        icon: 'school',
+        icon: 'person',
         children: [
           { label: 'Add Teacher', route: '/teacher/register' },
           { label: 'View Teachers', route: '/teacher/list' },
           { label: 'Assign Classes', route: '/teacher/assign-class' }
+        ]
+      },
+      {
+        label: 'Class Management',
+        icon: 'class',
+        children: [
+          { label: 'Add Class', route: '/class/register' },
+          { label: 'View Classes', route: '/class/list' }
+        ]
+      },{
+        label: 'Subject Management',
+        icon: 'subject',
+        children: [
+          { label: 'Add Subject', route: '/subject/register' },
+          { label: 'View Subjects', route: '/subject/list' },
+          { label: 'Assign Classes', route: '/subject/assign-class' }
         ]
       },
       {
@@ -38,7 +54,17 @@ export class MenuService {
         children: [
           { label: 'Add Timetable', route: '/timetable/register' },
           { label: 'View Timetable', route: '/timetable/list' },
+          { label: 'Add Exam Timetable', route: '/timetable/examtimetable' },
           { label: 'Update Timetable', route: '/timetable/detail/:id' }
+        ]
+      },
+      {
+        label: 'Result Management',
+        icon: 'school',
+        children: [
+          { label: 'View Results', route: '/result/list' },
+          { label: 'Update Results', route: '/result/update' },
+          { label: 'Result Details', route: '/result/details' }
         ]
       },
       {
@@ -62,15 +88,6 @@ export class MenuService {
           { label: 'Update Vehicle', route: '/vehicle/detail/:id' },
           { label: 'Add Visitor', route: '/visitor/register' },
           { label: 'View Visitors', route: '/visitor/list' }
-        ]
-      },
-      {
-        label: 'Result Management',
-        icon: 'assessment',
-        children: [
-          { label: 'View Results', route: '/result/list' },
-          { label: 'Update Results', route: '/result/update' },
-          { label: 'Result Details', route: '/result/details' }
         ]
       },
       {

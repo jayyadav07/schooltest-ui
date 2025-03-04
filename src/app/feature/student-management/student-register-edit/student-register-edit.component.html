@@ -8,16 +8,17 @@
     </div>
   
     <div class="register-content">
-        <div class="progress-line-container">
+        <!-- <div class="progress-line-container">
             <div class="progress-line" [style.width.%]="progressWidth" [style.background]="progressColor"></div>
-          </div>
+          </div> -->
       <mat-stepper linear #stepper class="registration-stepper">
         <!-- Basic Information Step -->
         <mat-step [stepControl]="basicInfoForm" label="Basic Information">
           <form [formGroup]="basicInfoForm">
             <div class="step-content">
               <h2>Student Basic Information</h2>
-              <p class="step-description">Please provide the student's basic personal details</p>
+              <!-- <p class="step-description">Please provide the student's basic personal details</p> -->
+              
               <div class="form-section">
                 <div class="form-row">
                   <mat-form-field appearance="outline">
@@ -317,128 +318,128 @@
   
         <!-- Review & Submit Step -->
         <mat-step>
-          <ng-template matStepLabel>Review & Submit</ng-template>
-          <div class="step-content">
-            <h2>Review Your Information</h2>
-            <p class="step-description">Please review all information before submitting</p>
-            
-            <div class="review-section">
-              <h3>Basic Information</h3>
-              <div class="review-grid">
-                <div class="review-item">
-                  <span class="review-label">Name:</span>
-                  <span class="review-value">{{basicInfoForm.get('firstName')?.value}} {{basicInfoForm.get('lastName')?.value}}</span>
+            <ng-template matStepLabel>Review & Submit</ng-template>
+            <div class="step-content">
+              <h2>Review Your Information</h2>
+              <p class="step-description">Please review all information before submitting</p>
+              
+              <div class="review-section">
+                <h3>Basic Information</h3>
+                <div class="review-grid">
+                  <div class="review-item">
+                    <span class="review-label">Name:</span>
+                    <span class="review-value">{{basicInfoForm.get('firstName')?.value}} {{basicInfoForm.get('lastName')?.value}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Date of Birth:</span>
+                    <span class="review-value">{{basicInfoForm.get('dob')?.value | date}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Gender:</span>
+                    <span class="review-value">{{basicInfoForm.get('gender')?.value}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Email:</span>
+                    <span class="review-value">{{basicInfoForm.get('email')?.value}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Phone:</span>
+                    <span class="review-value">{{basicInfoForm.get('phoneNumber')?.value}}</span>
+                  </div>
                 </div>
-                <div class="review-item">
-                  <span class="review-label">Date of Birth:</span>
-                  <span class="review-value">{{basicInfoForm.get('dob')?.value | date}}</span>
+          
+                <mat-divider></mat-divider>
+          
+                <h3>Identification</h3>
+                <div class="review-grid">
+                  <div class="review-item">
+                    <span class="review-label">Aadhar Number:</span>
+                    <span class="review-value">{{identificationForm.get('aadharNumber')?.value}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Birth Certificate:</span>
+                    <span class="review-value">{{identificationForm.get('birthCertificateNo')?.value || 'Not provided'}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">TC Number:</span>
+                    <span class="review-value">{{identificationForm.get('tcNumber')?.value || 'Not provided'}}</span>
+                  </div>
                 </div>
-                <div class="review-item">
-                  <span class="review-label">Gender:</span>
-                  <span class="review-value">{{basicInfoForm.get('gender')?.value}}</span>
+          
+                <mat-divider></mat-divider>
+          
+                <h3>Family Information</h3>
+                <div class="review-grid">
+                  <div class="review-item">
+                    <span class="review-label">Father's Name:</span>
+                    <span class="review-value">{{familyInfoForm.get('fatherName')?.value}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Mother's Name:</span>
+                    <span class="review-value">{{familyInfoForm.get('motherName')?.value}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Guardian's Name:</span>
+                    <span class="review-value">{{familyInfoForm.get('guardianName')?.value || 'Not provided'}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Emergency Contact:</span>
+                    <span class="review-value">{{familyInfoForm.get('emergencyContact')?.value}}</span>
+                  </div>
                 </div>
-                <div class="review-item">
-                  <span class="review-label">Email:</span>
-                  <span class="review-value">{{basicInfoForm.get('email')?.value}}</span>
+          
+                <mat-divider></mat-divider>
+          
+                <h3>Address</h3>
+                <div class="review-grid">
+                  <div class="review-item full-width">
+                    <span class="review-label">Address:</span>
+                    <span class="review-value">
+                      {{addressForm.get('streetAddress')?.value}}, 
+                      {{addressForm.get('city')?.value}}, 
+                      {{addressForm.get('state')?.value}} - 
+                      {{addressForm.get('postalCode')?.value}}
+                    </span>
+                  </div>
                 </div>
-                <div class="review-item">
-                  <span class="review-label">Phone:</span>
-                  <span class="review-value">{{basicInfoForm.get('phoneNumber')?.value}}</span>
+          
+                <mat-divider></mat-divider>
+          
+                <h3>Academic Information</h3>
+                <div class="review-grid">
+                  <div class="review-item">
+                    <span class="review-label">Class:</span>
+                    <span class="review-value">Class {{academicInfoForm.get('classId')?.value}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Roll Number:</span>
+                    <span class="review-value">{{academicInfoForm.get('rollNumber')?.value || 'Not assigned'}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Admission Date:</span>
+                    <span class="review-value">{{academicInfoForm.get('admissionDate')?.value | date}}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="review-label">Status:</span>
+                    <span class="review-value">{{academicInfoForm.get('status')?.value}}</span>
+                  </div>
                 </div>
               </div>
-  
-              <mat-divider></mat-divider>
-  
-              <h3>Identification</h3>
-              <div class="review-grid">
-                <div class="review-item">
-                  <span class="review-label">Aadhar Number:</span>
-                  <span class="review-value">{{identificationForm.get('aadharNumber')?.value}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">Birth Certificate:</span>
-                  <span class="review-value">{{identificationForm.get('birthCertificateNo')?.value || 'Not provided'}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">TC Number:</span>
-                  <span class="review-value">{{identificationForm.get('tcNumber')?.value || 'Not provided'}}</span>
-                </div>
+          
+              <div class="terms-section">
+                <mat-checkbox [(ngModel)]="termsAccepted" [ngModelOptions]="{standalone: true}">
+                  I confirm that all the information provided is accurate and complete.
+                </mat-checkbox>
               </div>
-  
-              <mat-divider></mat-divider>
-  
-              <h3>Family Information</h3>
-              <div class="review-grid">
-                <div class="review-item">
-                  <span class="review-label">Father's Name:</span>
-                  <span class="review-value">{{familyInfoForm.get('fatherName')?.value}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">Mother's Name:</span>
-                  <span class="review-value">{{familyInfoForm.get('motherName')?.value}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">Guardian's Name:</span>
-                  <span class="review-value">{{familyInfoForm.get('guardianName')?.value || 'Not provided'}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">Emergency Contact:</span>
-                  <span class="review-value">{{familyInfoForm.get('emergencyContact')?.value}}</span>
-                </div>
-              </div>
-  
-              <mat-divider></mat-divider>
-  
-              <h3>Address</h3>
-              <div class="review-grid">
-                <div class="review-item full-width">
-                  <span class="review-label">Address:</span>
-                  <span class="review-value">
-                    {{addressForm.get('streetAddress')?.value}}, 
-                    {{addressForm.get('city')?.value}}, 
-                    {{addressForm.get('state')?.value}} - 
-                    {{addressForm.get('postalCode')?.value}}
-                  </span>
-                </div>
-              </div>
-  
-              <mat-divider></mat-divider>
-  
-              <h3>Academic Information</h3>
-              <div class="review-grid">
-                <div class="review-item">
-                  <span class="review-label">Class:</span>
-                  <span class="review-value">Class {{academicInfoForm.get('classId')?.value}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">Roll Number:</span>
-                  <span class="review-value">{{academicInfoForm.get('rollNumber')?.value || 'Not assigned'}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">Admission Date:</span>
-                  <span class="review-value">{{academicInfoForm.get('admissionDate')?.value | date}}</span>
-                </div>
-                <div class="review-item">
-                  <span class="review-label">Status:</span>
-                  <span class="review-value">{{academicInfoForm.get('status')?.value}}</span>
-                </div>
+          
+              <div class="step-actions">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()">
+                  Submit Registration
+                </button>
               </div>
             </div>
-  
-            <div class="terms-section">
-              <mat-checkbox [(ngModel)]="termsAccepted" [ngModelOptions]="{standalone: true}">
-                I confirm that all the information provided is accurate and complete.
-              </mat-checkbox>
-            </div>
-  
-            <div class="step-actions">
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()">
-                Submit Registration
-              </button>
-            </div>
-          </div>
-        </mat-step>
+          </mat-step>
       </mat-stepper>
     </div>
   </div>

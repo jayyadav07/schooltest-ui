@@ -1,0 +1,229 @@
+<div class="classes-container">
+    <div class="page-header">
+      <div class="header-content">
+        <h1>Class Management</h1>
+        <p>Manage all classes and sections in the school</p>
+      </div>
+      <div class="header-actions">
+        <button mat-raised-button color="primary" class="add-button">
+          <mat-icon>add</mat-icon> Add Class
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon primary">
+            <mat-icon>groups</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">24</span>
+            <span class="stat-label">Total Classes</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon success">
+            <mat-icon>school</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">1,234</span>
+            <span class="stat-label">Total Students</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon warning">
+            <mat-icon>meeting_room</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">42</span>
+            <span class="stat-label">Classrooms</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-icon info">
+            <mat-icon>event_available</mat-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">94%</span>
+            <span class="stat-label">Attendance Rate</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Filters and Search -->
+    <mat-card class="filter-card">
+      <mat-card-content>
+        <div class="filters-container">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search Classes</mat-label>
+            <input matInput placeholder="Type to search...">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+
+          <div class="filter-actions">
+            <mat-form-field appearance="outline">
+              <mat-label>Grade Level</mat-label>
+              <mat-select>
+                <mat-option value="all">All Grades</mat-option>
+                <mat-option value="elementary">Elementary (1-5)</mat-option>
+                <mat-option value="middle">Middle School (6-8)</mat-option>
+                <mat-option value="high">High School (9-12)</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Academic Year</mat-label>
+              <mat-select>
+                <mat-option value="2025-2026">2025-2026</mat-option>
+                <mat-option value="2024-2025">2024-2025</mat-option>
+                <mat-option value="2023-2024">2023-2024</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary">
+              <mat-icon>filter_list</mat-icon> Apply Filters
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Classes Tabs and Content -->
+    <mat-card class="content-card">
+      <mat-card-content>
+        <mat-tab-group animationDuration="200ms">
+          <mat-tab label="All Classes">
+            <div class="tab-content">
+              <table mat-table [dataSource]="classes" class="classes-table">
+                <!-- Class Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Class Name </th>
+                  <td mat-cell *matCellDef="let class"> 
+                    <div class="class-name">
+                      <span>{{class.name}}</span>
+                      <span class="class-section">Section: {{class.section}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <!-- Grade Level Column -->
+                <ng-container matColumnDef="gradeLevel">
+                  <th mat-header-cell *matHeaderCellDef> Grade Level </th>
+                  <td mat-cell *matCellDef="let class"> {{class.gradeLevel}} </td>
+                </ng-container>
+
+                <!-- Class Teacher Column -->
+                <ng-container matColumnDef="classTeacher">
+                  <th mat-header-cell *matHeaderCellDef> Class Teacher </th>
+                  <td mat-cell *matCellDef="let class"> {{class.classTeacher}} </td>
+                </ng-container>
+
+                <!-- Students Column -->
+                <ng-container matColumnDef="students">
+                  <th mat-header-cell *matHeaderCellDef> Students </th>
+                  <td mat-cell *matCellDef="let class"> 
+                    <div class="students-info">
+                      <span class="student-count">{{class.studentCount}}</span>
+                      <span class="capacity-info">(Capacity: {{class.capacity}})</span>
+                      <mat-progress-bar 
+                        mode="determinate" 
+                        [value]="(class.studentCount / class.capacity) * 100"
+                        [ngClass]="getCapacityClass(class.studentCount, class.capacity)">
+                      </mat-progress-bar>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <!-- Room Column -->
+                <ng-container matColumnDef="room">
+                  <th mat-header-cell *matHeaderCellDef> Room </th>
+                  <td mat-cell *matCellDef="let class"> {{class.room}} </td>
+                </ng-container>
+
+                <!-- Subjects Column -->
+                <ng-container matColumnDef="subjects">
+                  <th mat-header-cell *matHeaderCellDef> Subjects </th>
+                  <td mat-cell *matCellDef="let class"> 
+                    <div class="subjects-list">
+                      <mat-chip-set>
+                        <mat-chip *ngFor="let subject of class.subjects.slice(0, 2)">
+                          {{subject}}
+                        </mat-chip>
+                        <mat-chip *ngIf="class.subjects.length > 2" 
+                                [matBadge]="class.subjects.length - 2"
+                                matBadgePosition="after"
+                                matBadgeColor="accent">
+                          More
+                        </mat-chip>
+                      </mat-chip-set>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let class"> 
+                    <span class="status-badge" [ngClass]="class.status.toLowerCase()">
+                      {{class.status}}
+                    </span>
+                  </td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef> Actions </th>
+                  <td mat-cell *matCellDef="let class">
+                    <button mat-icon-button color="primary" matTooltip="Edit Class">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" matTooltip="View Students">
+                      <mat-icon>people</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" matTooltip="Delete Class">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="Elementary">
+            <div class="tab-content">
+              <p class="tab-message">Elementary classes content will be displayed here.</p>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="Middle School">
+            <div class="tab-content">
+              <p class="tab-message">Middle School classes content will be displayed here.</p>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="High School">
+            <div class="tab-content">
+              <p class="tab-message">High School classes content will be displayed here.</p>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
